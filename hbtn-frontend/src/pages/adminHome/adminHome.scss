@@ -1,0 +1,21 @@
+.content-AdminHome {
+    width: 100%;
+    height: auto;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .components-content {
+        width: 95%;
+        height: auto;
+        padding: 50px;
+        border: #ddd solid 2px;
+        border-radius: 25px;
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 50px;
+        }
+    }
+}
