@@ -1,9 +1,50 @@
-import { Fragment } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Record } from "./Record";
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 /* Styles */
 import "./users.scss";
 
+const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'first_name', headerName: 'First name', width: 130 },
+    { field: 'last_name', headerName: 'Last name', width: 130 },
+    {
+      field: 'age',
+      headerName: 'Age',
+      type: 'number',
+      width: 90,
+    },
+    {
+      field: 'fullName',
+      headerName: 'Full name',
+      description: 'This column has a value getter and is not sortable.',
+      sortable: false,
+      width: 160,
+      valueGetter: (params: GridValueGetterParams) =>
+        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    },
+  ];
+
 export function Users() {
+    const URL = "http://localhost:5000/users"
+    const [state, setState] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() =>{
+        axios.get(URL)
+          .then(function (response) {
+            setLoading(false)
+            setState(response.data.items)
+          })
+          .catch(function (error) {
+            console.log(error)
+            setLoading(false)
+          })
+    },[])    
+
     return (
         <div className="component-content">
             <h1>Users</h1>
@@ -15,63 +56,15 @@ export function Users() {
                     </form>
                 </div>
             </nav>
-
-            <table class="table table-bordered">
-                <thead className="table-light">
-                    <tr>
-                    <th scope="col">Speakers of the day</th>
-                    <th scope="col">Betty Awards</th>
-                    <th scope="col">Others</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">12 Sept, 26 Jun, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">15 Apr, 30 Sept, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">23 Jul, 5 Nov, ...</th>
-                        <td >Haru Award, Chulls Award</td>
-                        <td >The Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12 Sept, 26 Jun, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">15 Apr, 30 Sept, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">23 Jul, 5 Nov, ...</th>
-                        <td >Haru Award, Chulls Award</td>
-                        <td >The Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12 Sept, 26 Jun, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">15 Apr, 30 Sept, ...</th>
-                        <td>Haru Award, Chulls Award</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">23 Jul, 5 Nov, ...</th>
-                        <td >Haru Award, Chulls Award</td>
-                        <td >The Bird</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                rows={state}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[5,10,15]}
+                checkboxSelection
+            />
+            </div>
 
             <div className="buttons-content">
                 <button type="button" class="btn btn-outline-primary">Nuevo</button>
