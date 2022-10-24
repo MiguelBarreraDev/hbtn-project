@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Record } from "./Record";
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 /* Styles */
@@ -11,12 +10,7 @@ const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'first_name', headerName: 'First name', width: 130 },
     { field: 'last_name', headerName: 'Last name', width: 130 },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 90,
-    },
+
     {
       field: 'fullName',
       headerName: 'Full name',
@@ -24,7 +18,7 @@ const columns: GridColDef[] = [
       sortable: false,
       width: 160,
       valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        `${params.row.first_name || ''} ${params.row.last_name || ''}`,
     },
   ];
 
@@ -48,11 +42,11 @@ export function Users() {
     return (
         <div className="component-content">
             <h1>Users</h1>
-            <nav class="navbar navbar-expand-lg">
-                <div class="f-container">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+            <nav className="navbar navbar-expand-lg">
+                <div className="f-container">
+                    <form className="d-flex" role="search">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </nav>
@@ -61,16 +55,16 @@ export function Users() {
                 rows={state}
                 columns={columns}
                 pageSize={10}
-                rowsPerPageOptions={[5,10,15]}
+                rowsPerPageOptions={[10]}
                 checkboxSelection
             />
             </div>
 
             <div className="buttons-content">
-                <button type="button" class="btn btn-outline-primary">Nuevo</button>
+                <button type="button" className="btn btn-outline-primary">Nuevo</button>
                 <div className="separator">&nbsp;</div>
-                <button type="button" class="btn btn-outline-dark">Editar</button>
-                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                <button type="button" className="btn btn-outline-dark">Editar</button>
+                <button type="button" className="btn btn-outline-danger">Eliminar</button>
             </div>
         </div>
     );
