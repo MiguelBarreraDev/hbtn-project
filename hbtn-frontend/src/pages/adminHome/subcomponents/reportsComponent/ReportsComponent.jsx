@@ -13,12 +13,12 @@ export function ReportsComponent() {
                 <span>
                     Jhon Smith Doe Report's
                 </span>
-                <button class="btn btn-outline-success" type="submit">
+                <button className="btn btn-outline-success" type="submit">
                     Add Report
                 </button>
             </div>
 
-            <table class="table table-bordered">
+            <table className="table table-bordered">
                 <thead className="table-light">
                     <tr>
                     <th scope="col">Registro</th>

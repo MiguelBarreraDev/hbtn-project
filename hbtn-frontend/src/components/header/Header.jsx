@@ -21,17 +21,17 @@ export function Header() {
           <ul>
             <li>
               <Link to="">
-                <i class="fi fi-ss-user"></i>
+                <i className="fi fi-ss-user"></i>
               </Link>
             </li>
             <li>
               <Link to="editUsers">
-                <i class="fi fi-ss-users-alt"></i>
+                <i className="fi fi-ss-users-alt"></i>
               </Link>
             </li>
             <li>
               <Link to="">
-                <i class="fi fi-ss-settings"></i>
+                <i className="fi fi-ss-settings"></i>
               </Link>
             </li>
           </ul>
@@ -39,7 +39,7 @@ export function Header() {
         <hr />
         <div className="logout flex">
           <Link to="">
-            <i class="fi fi-br-sign-out-alt"></i>
+            <i className="fi fi-br-sign-out-alt"></i>
           </Link>
         </div>
       </nav>

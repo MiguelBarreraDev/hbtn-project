@@ -9,6 +9,7 @@ import {
 
 /* Components */
 import { Layout } from "./pages/Layout";
+import { Login } from "./pages/login/Login";
 import { AdminHome } from "./pages/adminHome/AdminHome";
 import { AdminEditUsers } from "./pages/adminEditUsers/AdminEditUsers";
 import { NotFoundPage } from "./pages/notFoundPage/NotFoundPage";
@@ -19,6 +20,7 @@ export function App() {
     <BrowserRouter>
         
       <Routes>
+        {/* <Route path="/" index element={<Login />} /> */}
         <Route path="/" element={<Layout />}>
           <Route index element={<AdminHome />} />
           <Route path="editUsers" element={<AdminEditUsers />} />
