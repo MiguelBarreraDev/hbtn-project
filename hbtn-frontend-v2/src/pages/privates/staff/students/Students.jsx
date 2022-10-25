@@ -82,7 +82,7 @@ export default function Students() {
         className="btn btn-success"
         onClick={handleClick}
       >
-        Search
+        Ver Detalle
       </button>
     </div>
   );
