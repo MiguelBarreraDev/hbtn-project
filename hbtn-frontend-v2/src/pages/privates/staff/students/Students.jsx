@@ -25,9 +25,21 @@ const columns = [
 ];
 
 export default function Students() {
+
+  const buscar = (searchValue) => {
+    let filtered = [];
+    students.map((student) => {
+      if (Object.values(student).join('').toLowerCase().includes(searchValue.toLowerCase())) {
+        filtered[filtered.length] = student;
+      }
+      //if (student.first_name == searchValue || student.last_name == searchValue) filtered[filtered.length] = student;
+    });
+    setFiltered(filtered);
+  }
   const navigate = useNavigate()
   const URL = "http://localhost:5000/students"
   const { students, setStudents  } = useStudents()
+  const [ filtered, setFiltered ] = useState([]);
   const [loading, setLoading] = useState(!Boolean(students.length))
   const [id, setId] = useState(null)
 
@@ -37,6 +49,7 @@ export default function Students() {
         .then(function (response) {
           setLoading(false)
           setStudents(response.data.items)
+          setFiltered(response.data.items)
         })
         .catch(function (error) {
           console.log(error)
@@ -58,7 +71,7 @@ export default function Students() {
         </select>
         <div className="f-container">
           <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <input className="form-control me-2" type="search" onChange={(e) => buscar(e.target.value)} placeholder="Search" aria-label="Search" />
             <button className="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
@@ -67,7 +80,7 @@ export default function Students() {
       <div className="caption">Students - Cohort 17</div>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={students}
+          rows={filtered}
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[10]}
