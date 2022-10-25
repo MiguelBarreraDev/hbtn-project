@@ -11,6 +11,7 @@ import {
 import { Login } from "./pages/login/Login";
 import { NotFoundPage } from "./pages/notFoundPage/NotFoundPage";
 import {Sidebar} from "./components";
+import { Navigate } from "react-router-dom";
 import {privatesRoutes} from "./config";
 // const Students = lazy(() => import("./pages/privates/staff/students/Students"))
 // const Student = lazy(() => import("./pages/privates/staff/student/Student"))
@@ -29,7 +30,8 @@ export default function App() {
     <BrowserRouter>
       <Suspense fallback={<>Loading</>}>
         <Routes>
-          <Route path="/" element={<Sidebar />}>
+          <Route path="/" element={<Navigate to="/students"/>} />
+          <Route element={<Sidebar />}>
             {toList(privatesRoutes).map(setRoute)}
             {/* <Route index element={<Students />} /> */}
             {/* <Route path="students/:id" element={<Student />} /> */}
