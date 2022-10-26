@@ -1,10 +1,14 @@
+import {useUser} from "@/context/user.context";
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /* Styles */
 import "./header.scss";
 
 export default function Header() {
+  const navigate = useNavigate()
+  const { user, setUser } = useUser()
+
   return (
     <Fragment>
       <nav className="header">
@@ -19,11 +23,15 @@ export default function Header() {
         <hr />
         <div className="links">
           <ul>
-            <li>
-              <Link to="/users">
-                <i className="fi fi-ss-user"></i>
-              </Link>
-            </li>
+            {
+              user?.rol !== 'holbie' && (
+                <li>
+                  <Link to="/users">
+                    <i className="fi fi-ss-user"></i>
+                  </Link>
+                </li>
+              )
+            }
             <li>
               <Link to="/students">
                 <i className="fi fi-ss-users-alt"></i>
@@ -38,9 +46,13 @@ export default function Header() {
         </div>
         <hr />
         <div className="logout flex">
-          <Link to="">
+          <button onClick={() => {
+              setUser(null)
+              window.localStorage.removeItem('user')
+              navigate('/login', {replace: true})
+            }}>
             <i className="fi fi-br-sign-out-alt"></i>
-          </Link>
+          </button>
         </div>
       </nav>
       <div className="header-separator">

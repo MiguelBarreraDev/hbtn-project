@@ -2,19 +2,44 @@
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode"
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import {useUser} from "@/context/user.context";
+import {useNavigate} from "react-router-dom";
 
-export function Login(params) {
-  const [user, setUser ] = useState({});
+const API_URL = 'http://localhost:5000'
+
+export function Login() {
+  const navigate = useNavigate()
+  const { user, setUser } = useUser()
+  
+  useEffect(() => {
+    if (user) {
+      setUser(null)
+      window.localStorage.removeItem('user')
+    }
+  }, [])
 
   function handleCallbackResponse(response) {
-    console.log("Encoded JWS Id tokens" + response.credencials);
-    var userObj = jwt_decode(response.credencials);
-    console.log(userObj);
-    setUser(userObj);
+    var userObj = jwt_decode(response.credential);
+    window.localStorage.setItem('user', userObj)
+    setUser(userObj)
+    navigate('/students')
+    // Validar el correro (holberton)
 
+    // Validar con nuestro backend
+    // axios.post(`${API_URL}/login`,{
+    //   data: {
+    //     email: userObj?.email
+    //   }
+    // })
+    //   .then(response => {
+    //     setUser(userObj)
+    //     navigate('/students')
+    //   })
+    //   .catch(err => console.log('err:', err))
   }
 
   useEffect(() => {
+    console.log("Holaaa")
     google.accounts.id.initialize({
       client_id: "422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com",
       callback: handleCallbackResponse
@@ -28,12 +53,6 @@ export function Login(params) {
   return (
     <div className="App">
       <div id="signInDiv"></div>
-      { user &&
-      <div>
-        <img src={user?.picture} alt='bro palo'></img>
-        <h3>{user.name}</h3>
-      </div>
-      }
     </div>
   );
 }
