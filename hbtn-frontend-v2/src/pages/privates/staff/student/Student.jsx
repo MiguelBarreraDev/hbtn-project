@@ -91,7 +91,7 @@ export default function Student () {
           loading={loading}
         />
       </div>
-      <Reports />
+      <Reports id={params.id} />
     </div>
   );
 }
