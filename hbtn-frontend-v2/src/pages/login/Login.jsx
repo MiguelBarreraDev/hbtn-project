@@ -52,7 +52,20 @@ export function Login() {
 
   return (
     <div className="App">
-      <div id="signInDiv"></div>
+      <form>
+  <div class="segment">
+    <h1>Sign up</h1>
+  </div>
+  <div id="signInDiv" type="button"> <i class="icon ion-md-lock"></i> Log in</div>
+  <button class="red" type="button"><i class="icon ion-md-lock"></i> Log in</button>
+  
+  <div class="segment">
+    <button class="unit" type="button"><i class="icon ion-md-arrow-back"></i></button>
+    <button class="unit" type="button"><i class="icon ion-md-bookmark"></i></button>
+    <button class="unit" type="button"><i class="icon ion-md-settings"></i></button>
+  </div>
+ 
+</form>
     </div>
   );
 }

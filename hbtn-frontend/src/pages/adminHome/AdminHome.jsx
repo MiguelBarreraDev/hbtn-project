@@ -1,6 +1,7 @@
 /* Components */
 import { ReportsComponent } from "./subcomponents/reportsComponent/ReportsComponent";
-import { StudentsComponent } from "./subcomponents/studentsComponent/StudentsComponent";
+import { Student } from "./subcomponents/studentComponent/Student";
+import { Students } from "./subcomponents/studentsComponent/Students";
 
 /* Styles */
 import "./adminHome.scss";
@@ -10,8 +11,9 @@ export function AdminHome() {
             <div className="content-AdminHome">
                 <div className="components-content">
                     <h1>Cohorts Activas</h1>
-                    <StudentsComponent />
-                    <ReportsComponent />
+                    <Students />
+                    {/* <Student /> */}
+                    {/* <ReportsComponent /> */}
                 </div>
             </div>
     );

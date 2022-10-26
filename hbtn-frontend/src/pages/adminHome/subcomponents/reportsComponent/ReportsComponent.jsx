@@ -1,12 +1,63 @@
 import React from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
 /* Components */
-// import { Header } from "../components/header/Header";
-
 /* Styles */
 import "./reportsComponent.scss";
 
+const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'date', headerName: 'Fecha', width: 130 },
+    {
+        field: 'name',
+        headerName: 'Registro',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 160,
+        valueGetter: (params: GridValueGetterParams) =>
+          `${params.row.report_type.name || ''}`,
+    },
+    {
+        field: 'fullName',
+        headerName: 'Reporter',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 160,
+        valueGetter: (params: GridValueGetterParams) =>
+          `${params.row.reporter?.first_name || ''} ${params.row.reporter?.last_name || ''}`,
+    },
+];
+
 export function ReportsComponent() {
+    const URL = "http://localhost:5000/students/3701/reports"
+    const [state, setState] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=> {
+        axios.get(URL)
+        .then(function (response) {
+            setLoading(false)
+            // const { items } = response.data
+            // const newlist = items.map((item) =>{
+            //     item.name = item.report_type.name
+            //     console.log("miITEMM", item)
+            //     item.first_name = item.reporter?.first_name ?? ""
+            //     item.last_name = item.reporter?.last_name ?? ""
+            //     return item
+            // })
+            // console.log("NEWLISTTT", newlist)
+            //setState(newlist)
+            setState(response.data.items)
+        })
+        .catch(function (error) {
+            console.log(error)
+            setLoading(false)
+        })
+    }, [])
+
     return (
         <div className="reports-content">
             <div className="caption-02">
@@ -17,37 +68,15 @@ export function ReportsComponent() {
                     Add Report
                 </button>
             </div>
-
-            <table className="table table-bordered">
-                <thead className="table-light">
-                    <tr>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Calificacion</th>
-                    <th scope="col">Total Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Speaker of the day</th>
-                        <td>12 Sept, 26 Sept, ...</td>
-                        <td>-0.25</td>
-                        <td>83%</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Pld</th>
-                        <td>12 Sept, 26 Sept, ...</td>
-                        <td>+0.5</td>
-                        <td>97%</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Speaker of the day</th>
-                        <td >12 Sept, 26 Sept, ...</td>
-                        <td >-1</td>
-                        <td>90%</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                rows={state}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+                checkboxSelection
+            />
+            </div>
         </div>
     );
 }
