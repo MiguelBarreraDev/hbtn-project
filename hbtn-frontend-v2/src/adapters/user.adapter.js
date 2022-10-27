@@ -1,8 +1,7 @@
 const userAdapter = (user) => ({
   name: user.name,
-  surname: user.surname,
-  username: user.username,
-  jwt: user.jwt
+  email: user.email,
+  token: user.token
 })
 
 export default userAdapter

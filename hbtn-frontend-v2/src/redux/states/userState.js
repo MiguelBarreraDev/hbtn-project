@@ -5,7 +5,7 @@ const emptyUserState = {
   name: '',
   surname: '',
   username: '',
-  jwt: null
+  token: null,
 }
 
 export const userSlice = createSlice({

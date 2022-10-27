@@ -1,12 +1,11 @@
 import { publicsRoutes } from '@/config'
-// import { createUser, resetUser } from '@/redux/states'
 import { loginService } from '@/services'
 import { ls } from '@/utilities'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { userAdapter } from '@/adapters'
 import useAsyncCall from './useAsyncCall'
-import { createUser, resetUser } from '@/redux'
+import { createUser, resetUser } from '@/redux/states'
 
 export default function useAuth () {
   const navigate = useNavigate()
@@ -21,16 +20,17 @@ export default function useAuth () {
     if (response?.error) return response
     console.log(response)
     // Set auth token
-    // ls.setItem('jwt', response.jwt)
+    ls.setItem('token', token)
 
-    // // Create new user in memory
-    // dispatch(createUser(userAdapter(response)))
-    // navigate('/')
+    // Create new user in memory
+    response.token = token
+    dispatch(createUser(userAdapter(response)))
+    navigate('/')
   }
 
   const logout = ({ redirect = true } = {}) => {
-    // Unset auth token
-    ls.removeItem('jwt')
+    // Remove token of the local storage
+    ls.removeItem('token')
 
     // Remove current session of the user
     dispatch(resetUser())
@@ -40,7 +40,7 @@ export default function useAuth () {
   return {
     login,
     logout,
-    isLogged: Boolean(userState.jwt),
+    isLogged: Boolean(userState.token),
     loading,
     user: userState
   }
