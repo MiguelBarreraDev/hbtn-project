@@ -80,7 +80,7 @@ export default function Reports(props) {
     }, [])
 
     return (
-        <div className="reports-content">
+        <div className="component-content">
             <div className="caption-02">
                 <span>
                     Jhon Smith Doe Report's

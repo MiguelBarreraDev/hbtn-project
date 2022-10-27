@@ -1,2 +1,2 @@
-export * from './userState'
-export { default as userReducer } from './userState'
+export * from './states/userState'
+export { default as userReducer } from './states/userState'

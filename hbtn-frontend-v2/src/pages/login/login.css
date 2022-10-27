@@ -2,15 +2,10 @@ body, html {
     background-color: #EBECF0;
   }
   
-  body, p, input, select, textarea, button {
+  body, p, input,  button {
     font-family: "Montserrat", sans-serif;
     letter-spacing: -0.2px;
     font-size: 16px;
-  }
-  
-  div, p {
-    color: #BABECC;
-    text-shadow: 1px 1px 1px #FFF;
   }
   
   form {
@@ -53,7 +48,7 @@ body, html {
     box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
   }
   
-  button {
+  button.login {
     color: #61677C;
     font-weight: bold;
     box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
@@ -98,4 +93,9 @@ body, html {
   .input-group label {
     margin: 0;
     flex: 1;
+  }
+
+  #signInDiv .S9gUrf-YoZ4jf {
+    display: flex;
+    justify-content: center;
   }

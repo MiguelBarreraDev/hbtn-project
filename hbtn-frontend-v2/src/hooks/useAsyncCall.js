@@ -1,5 +1,5 @@
-export default function useAsyncCall ({ loading = false }) {
-  const [loading, setLoading] = useState(loading)
+export default function useAsyncCall ({ load = false }) {
+  const [loading, setLoading] = useState(load)
   let controller
 
   const callEndpoint = async (asyncCall) => {
