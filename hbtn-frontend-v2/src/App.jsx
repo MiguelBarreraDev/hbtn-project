@@ -13,7 +13,6 @@ import {
 import { Login } from "./pages/login/Login";
 import { NotFoundPage } from "./pages/notFoundPage/NotFoundPage";
 import {Sidebar} from "./components";
-import { Navigate } from "react-router-dom";
 import {privatesRoutes} from "./config";
 import {useUser} from "./context/user.context";
 // const Students = lazy(() => import("./pages/privates/staff/students/Students"))
