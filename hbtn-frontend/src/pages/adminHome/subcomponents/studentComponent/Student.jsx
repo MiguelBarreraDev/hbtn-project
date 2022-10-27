@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { useParams } from "react-router-dom";
 
 /* Components */
 // import { Header } from "../components/header/Header";
@@ -26,21 +27,25 @@ const columns: GridColDef[] = [
     },
 ];
 
-export function StudentsComponent() {
+export function Student() {
     const URL = "http://localhost:5000/students"
     const [state, setState] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const param = useParams()
+    console.log(param)
+
     useEffect(()=> {
-        axios.get(URL //, {
-        //     params: {
-        //         ID: 3701
-        //     }
-        // }
+        axios.get(URL , {
+            params: {
+                ID: param.id
+            }
+        }
         )
         .then(function (response) {
             setLoading(false)
-            setState(response.data.items)
+            console.log(response)
+            setState([response.data])
         })
         .catch(function (error) {
             console.log(error)

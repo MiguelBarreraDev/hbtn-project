@@ -57,6 +57,7 @@ export default function Users() {
                 pageSize={10}
                 rowsPerPageOptions={[10]}
                 checkboxSelection
+                loading={loading}
             />
             </div>
 
