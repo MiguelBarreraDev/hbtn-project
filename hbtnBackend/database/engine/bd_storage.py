@@ -16,9 +16,9 @@ class DBStorage:
         """Initialize a new instance of the class.
         """
         self.__connector = mysql.connector.connect(
-                                    user='root',
-                                    password='',
-                                    host='localhost:86',
+                                    user='development',
+                                    password='dev_pwd(001)',
+                                    host='localhost',
                                     database='holberton_db')
 
         self.__connector.autocommit = False
@@ -60,7 +60,7 @@ class DBStorage:
             return (records)
         except mysql.connector.Error as error:
             self.__connector.rollback()
-            print(error.msg)
+            print(error)
             # Libraries.write_log(error.msg, traceback.format_exc())
             return (records)
         finally:

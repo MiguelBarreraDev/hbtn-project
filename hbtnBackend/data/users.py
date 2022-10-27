@@ -6,11 +6,11 @@ class Users:
 
     def connector(self):
         conexion = mysql.connector.connect(
-            host=getenv("YND_DB_HOST"),
-            user=getenv("YND_DB_USERNAME"),
-            password=getenv("YND_DB_USERPASSWORD"),
-            database=getenv("YND_DB_DATABASENAME"),
-            port=getenv("YND_DB_PORT")
+            host="localhost", #getenv("YND_DB_HOST"),
+            user="root", #getenv("YND_DB_USERNAME"),
+            password="", #getenv("YND_DB_USERPASSWORD"),
+            database="", #getenv("YND_DB_DATABASENAME"),
+            port="3306", #getenv("YND_DB_PORT")
         )
         return conexion
 
