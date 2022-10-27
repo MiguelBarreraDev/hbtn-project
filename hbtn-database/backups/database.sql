@@ -11,13 +11,12 @@ use `holberton_db`;
 -- Estructura de tabla para la tabla `api_request`
 --
 
-CREATE TABLE `api_request` (
-  `id` int(8) NOT NULL,
+CREATE TABLE IF NOT EXISTS `api_request` (
+  `id` int NOT NULL,
   `url` text NOT NULL,
   `cabecera` longtext NOT NULL,
   `cuerpo` longtext NOT NULL,
-  `f_consulta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `f_respuesta` timestamp
+  `f_consulta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -26,13 +25,12 @@ CREATE TABLE `api_request` (
 -- Estructura de tabla para la tabla `api_response`
 --
 
-CREATE TABLE `api_response` (
-  `id` int(8) NOT NULL,
+CREATE TABLE IF NOT EXISTS `api_response` (
+  `id` int NOT NULL,
   `url` text NOT NULL,
   `cabecera` longtext NOT NULL,
   `cuerpo` longtext NOT NULL,
-  `f_consulta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `f_respuesta` timestamp
+  `f_respuesta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -41,17 +39,17 @@ CREATE TABLE `api_response` (
 -- Estructura de tabla para la tabla `reporte`
 --
 
-CREATE TABLE `reporte` (
-  `id` int(8) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_tipo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reporte` (
+  `id` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `id_tipo` int NOT NULL,
   `calificacion` int(11) NOT NULL,
   `creado_por` text NOT NULL,
-  `creado_el` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `creado_en` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `actualizado_por` text NOT NULL,
-  `actualizado_el` timestamp,
+  `actualizado_en` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `eliminado_por` text NOT NULL,
-  `eliminado_el` timestamp,
+  `eliminado_en` timestamp,
   `eliminado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -59,9 +57,9 @@ CREATE TABLE `reporte` (
 -- Volcado de datos para la tabla `reporte`
 --
 
-INSERT INTO `reporte` (`id`, `id_usuario`, `id_tipo`, `calificacion`, `creado_por`, `creado_el`, `actualizado_por`, `actualizado_el`, `eliminado_por`, `eliminado_el`, `eliminado`) VALUES
-(1, 2, 1, 5, 'rogelio', '2022-10-25 17:39:36', 'rogelio', '', 'rogelio', '', 0),
-(2, 2, 2, 12, 'rogelio', '2022-10-25 17:44:59', 'rogelio', '', 'rogelio', '', 0);
+INSERT INTO `reporte` (`id`, `id_usuario`, `id_tipo`, `calificacion`, `creado_por`, `actualizado_por`, `eliminado_por`, `eliminado`) VALUES
+(1, 2, 1, 5, 'rogelio', 'rogelio', 'rogelio', 0),
+(2, 2, 2, 12, 'rogelio', 'rogelio', 'rogelio', 0);
 
 -- --------------------------------------------------------
 
@@ -69,15 +67,15 @@ INSERT INTO `reporte` (`id`, `id_usuario`, `id_tipo`, `calificacion`, `creado_po
 -- Estructura de tabla para la tabla `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` int(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int NOT NULL,
   `nombre` text NOT NULL,
   `descripcion` text,
-  `creado_el` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `creado_en` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `creado_por` text NOT NULL,
   `actualizado_el` timestamp,
   `actualizado_por` text NOT NULL,
-  `eliminado_el` timestamp,
+  `eliminado_en` timestamp,
   `eliminado_por` text NOT NULL,
   `eliminado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -86,9 +84,9 @@ CREATE TABLE `roles` (
 -- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `creado_el`, `creado_por`, `actualizado_el`, `actualizado_por`, `eliminado_el`, `eliminado_por`, `eliminado`) VALUES
-(1, 'admin', 'administrador', '2022-10-25 17:20:48', 'ruben', '', 'ruben', '', 'ruben', 0),
-(2, 'staff', 'usuarios del staff, menor al admin', '2022-10-25 17:21:45', 'ruben', '', 'ruben', '', 'ruben', 0);
+INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `creado_por`, `actualizado_por`, `eliminado_por`, `eliminado`) VALUES
+(1, 'admin', 'administrador', 'ruben', 'ruben', 'ruben', 0),
+(2, 'staff', 'usuarios del staff, menor al admin', 'ruben', 'ruben', 'ruben', 0);
 
 -- --------------------------------------------------------
 
@@ -96,18 +94,18 @@ INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `creado_el`, `creado_por`, `
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(50) NOT NULL,
-  `id_rol` int(50) NOT NULL,
+CREATE TABLE  IF NOT EXISTS `usuarios` (
+  `id` int NOT NULL,
+  `id_rol` int NOT NULL,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
   `email` text NOT NULL,
-  `estado` int(50) NOT NULL,
-  `creado_el` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `estado` int NOT NULL,
+  `creado_en` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `creado_por` text NOT NULL,
-  `actualizado_el` timestamp,
+  `actualizado_en` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `actualizado_por` text NOT NULL,
-  `eliminado_el` timestamp,
+  `eliminado_en` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `eliminado_por` text NOT NULL,
   `eliminado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -116,9 +114,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `id_rol`, `nombre`, `apellido`, `email`, `estado`, `creado_el`, `creado_por`, `actualizado_el`, `actualizado_por`, `eliminado_el`, `eliminado_por`, `eliminado`) VALUES
-(1, 1, 'ruben', 'cadenas', 'ruben.cadenas@holbertonschool.com', 1, '0000-00-00 00:00:00', 'ruben', '', 'ruben', '', 'ruben', 0),
-(2, 1, 'rogelio', 'conde', '3701@holbertonstudents.com', 0, '2022-10-25 17:34:33', 'ruben', '', 'ruben', '', 'ruben', 0);
+INSERT INTO `usuarios` (`id`, `id_rol`, `nombre`, `apellido`, `email`, `estado`, `creado_por` , `actualizado_por`, `eliminado_por`, `eliminado`) VALUES
+(1, 1, 'ruben', 'cadenas', 'ruben.cadenas@holbertonschool.com', 1, 'ruben', 'ruben', 'ruben', 0),
+(2, 1, 'rogelio', 'conde', '3701@holbertonstudents.com', 0, 'ruben', 'ruben', 'ruben', 0);
 
 --
 -- Índices para tablas volcadas
@@ -164,31 +162,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `api_request`
 --
 ALTER TABLE `api_request`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `api_response`
 --
 ALTER TABLE `api_response`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
