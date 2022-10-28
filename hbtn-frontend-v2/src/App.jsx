@@ -27,9 +27,14 @@ function PrivateGuard () {
     : <Navigate to='/login' />
 }
 
+function Home () {
+  const { isLogged } = useAuth()
+  return isLogged
+    ? <Navigate to='/students' />
+    : <Navigate to='/login' />
+}
+
 export default function App() {
-  const { user } = useUser()
-  
   const setRoute = ({ path, key, Component }) => (
     <Route key={key} path={path} element={<Component />} />
   )
@@ -41,7 +46,7 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<>Loading</>}>
           <Routes>
-            <Route path='/' element={<Navigate to={user ? '/students' : '/login'} />}/>
+            <Route path='/' element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route element={<PrivateGuard />}>
               <Route element={<Sidebar />}>

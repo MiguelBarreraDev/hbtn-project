@@ -8,7 +8,7 @@ export default function useAsyncCall ({ load } = { load: false }) {
     setLoading(true)
     controller = asyncCall.controller ?? null
     try {
-      const result = await asyncCall()
+      const result = await asyncCall.call
       setLoading(false)
       return result?.data
     } catch {

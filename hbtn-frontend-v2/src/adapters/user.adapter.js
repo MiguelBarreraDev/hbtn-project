@@ -1,6 +1,8 @@
 const userAdapter = (user) => ({
-  name: user.name,
+  name: user.nombre,
   email: user.email,
+  status: user.estado,
+  apellido: user.apellido,
   token: user.token
 })
 

@@ -18,7 +18,7 @@ export default function useAuth () {
 
     // Hanlde error
     if (response?.error) return response
-    console.log(response)
+
     // Set auth token
     ls.setItem('token', token)
 

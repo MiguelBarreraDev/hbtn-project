@@ -1,11 +1,13 @@
+import {ls} from '@/utilities'
 import { createSlice } from '@reduxjs/toolkit'
 
 const emptyUserState = {
   id: '',
   name: '',
   surname: '',
-  username: '',
-  token: null,
+  email: '',
+  status: '',
+  token: ls.getItem('token') ?? null,
 }
 
 export const userSlice = createSlice({

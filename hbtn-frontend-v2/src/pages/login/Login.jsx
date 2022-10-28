@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks";
 
 export function Login() {
   const navigate = useNavigate()
-  const { login, isLogged } = useAuth()
+  const { login, isLogged, loading } = useAuth()
 
   useEffect(() => {
     // isLogged && navigate('/')
@@ -14,8 +14,7 @@ export function Login() {
 
   async function handleCallbackResponse(response) {
     const token = response.credential;
-    const loginResponse = await login({ token })
-    if (!loginResponse.error) navigate('/')
+    await login({ token })
   }
 
   useLayoutEffect(() => {
@@ -36,6 +35,7 @@ export function Login() {
           <h1>Iniciar Sesión</h1>
         </div>
         <div id="signInDiv"></div>
+        {loading && <div>Cargando</div>}
         {/* <button class="red" type="button" className="login"><i class="icon ion-md-lock"></i></button> */}
 
         {/* <div class="segment">

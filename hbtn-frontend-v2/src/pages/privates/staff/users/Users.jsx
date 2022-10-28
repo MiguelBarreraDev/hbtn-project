@@ -8,8 +8,8 @@ import "./Users.scss";
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'first_name', headerName: 'First name', width: 130 },
-    { field: 'last_name', headerName: 'Last name', width: 130 },
+    { field: 'nombre', headerName: 'First name', width: 130 },
+    { field: 'apellido', headerName: 'Last name', width: 130 },
 
     {
       field: 'fullName',
@@ -18,7 +18,7 @@ const columns = [
       sortable: false,
       width: 160,
       valueGetter: (params)=>
-        `${params.row.first_name || ''} ${params.row.last_name || ''}`,
+        `${params.row.nombre || ''} ${params.row.apellido || ''}`,
     },
   ];
 
@@ -31,7 +31,7 @@ export default function Users() {
         axios.get(URL)
           .then(function (response) {
             setLoading(false)
-            setState(response.data.items)
+            setState(response.data)
           })
           .catch(function (error) {
             console.log(error)
