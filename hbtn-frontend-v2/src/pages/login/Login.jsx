@@ -47,6 +47,9 @@ export function Login() {
     console.log("Holaaa")
     google.accounts.id.initialize({
       client_id: "422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com",
+      // render:(renderProps =>{
+      //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Inicia session</button>
+      // }),
       callback: handleCallbackResponse
     });
     google.accounts.id.renderButton(
@@ -57,20 +60,32 @@ export function Login() {
 
   return (
     <div className="App">
-      <form>
-  <div class="segment">
-    <h1>Iniciar Sesiòn</h1>
+      <form class="f-login">
+
+        <div class="segment tittle">
+          <h1>Iniciar Sesion</h1>
+        </div>
+        <div class="logo">
+          <img src="https://holberton.anahuac.mx/wp-content/uploads/Group-359.png"></img>
+        </div>
+        <GoogleLogin
+        clientId="422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com"
+        render={renderProps =>(
+              <button class="red mybtn act" type="button" id="signInDiv" onClick={renderProps.onClick} disabled={renderProps.disabled}>Iniciar con google</button>
+          )}
+          cookiePolicy={'single_host_origin'}
+        />
+        {/* <button class="red mybtn act" type="button" id="signInDiv"> Iniciar con google</button> */}
+        
+        <div class="segment">
+          <button class="unit mybtn" type="button"></button>
+          <button class="unit mybtn" type="button"></button>
+          <button class="unit mybtn" type="button"></button>
+        </div>
+        
+      </form>
+      {/* <div id="signInDiv"></div> */}
+
   </div>
-  <div id="signInDiv"></div>
-  {/* <button class="red" type="button" className="login"><i class="icon ion-md-lock"></i></button> */}
-  
-  {/* <div class="segment">
-    <button class="unit" type="button"><i class="icon ion-md-arrow-back"></i></button>
-    <button class="unit" type="button"><i class="icon ion-md-bookmark"></i></button>
-    <button class="unit" type="button"><i class="icon ion-md-settings"></i></button>
-  </div> */}
- 
-</form>
-    </div>
   );
 }
