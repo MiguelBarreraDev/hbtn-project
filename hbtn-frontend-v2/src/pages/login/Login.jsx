@@ -1,50 +1,23 @@
 // import
-import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode"
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import {useUser} from "@/context/user.context";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
+import { useEffect, useLayoutEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './login.css'
 import { useAuth } from "@/hooks";
 
-const API_URL = 'http://localhost:5000'
-
 export function Login() {
   const navigate = useNavigate()
-  const { user, setUser } = useUser()
-  const { login } = useAuth()
-  
+  const { login, isLogged, loading } = useAuth()
+
   useEffect(() => {
-    if (user) {
-      setUser(null)
-      window.localStorage.removeItem('user')
-    }
+    // isLogged && navigate('/')
   }, [])
 
   async function handleCallbackResponse(response) {
-    // const token = response.credential;
-    //await login({token})
-    // setUser(userObj)
-    // navigate('/students')
-    // Validar el correro (holberton)
-
-    // Validar con nuestro backend
-    axios.post(`${API_URL}/login`,{
-      data: {
-        token: token
-      }
-    })
-      .then(response => {
-        setUser(response.data)
-        window.localStorage.setItem('user', JSON.stringify(response.data))
-        navigate('/students')
-      })
-      .catch(err => console.log('err:', err))
+    const token = response.credential;
+    await login({ token })
   }
 
-  useEffect(() => {
-    console.log("Holaaa")
+  useLayoutEffect(() => {
     google.accounts.id.initialize({
       client_id: "422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com",
       // render:(renderProps =>{
@@ -54,7 +27,7 @@ export function Login() {
     });
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
-      { theme: "outline"}
+      { theme: "outline", width: 300 }
     );
   }, []);
 

@@ -1,13 +1,12 @@
-import {useUser} from "@/context/user.context";
+import { useAuth } from "@/hooks";
 import { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /* Styles */
 import "./header.scss";
 
 export default function Header() {
-  const navigate = useNavigate()
-  const { user, setUser } = useUser()
+  const { logout, user } = useAuth()
 
   return (
     <Fragment>
@@ -46,11 +45,7 @@ export default function Header() {
         </div>
         <hr />
         <div className="logout flex">
-          <button onClick={() => {
-              setUser(null)
-              window.localStorage.removeItem('user')
-              navigate('/login', {replace: true})
-            }}>
+          <button onClick={logout}>
             <i className="fi fi-br-sign-out-alt"></i>
           </button>
         </div>

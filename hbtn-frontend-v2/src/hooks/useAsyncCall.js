@@ -1,4 +1,6 @@
-export default function useAsyncCall ({ load = false }) {
+import { useEffect, useState } from "react"
+
+export default function useAsyncCall ({ load } = { load: false }) {
   const [loading, setLoading] = useState(load)
   let controller
 
@@ -6,7 +8,7 @@ export default function useAsyncCall ({ load = false }) {
     setLoading(true)
     controller = asyncCall.controller ?? null
     try {
-      const result = await asyncCall()
+      const result = await asyncCall.call
       setLoading(false)
       return result?.data
     } catch {
