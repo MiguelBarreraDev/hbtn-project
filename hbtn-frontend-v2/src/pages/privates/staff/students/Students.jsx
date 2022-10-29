@@ -84,12 +84,6 @@ export default function Students() {
   return (
     <div className="component-content">
       <nav className="navbar navbar-expand-lg">
-        {/* <select className="form-select" aria-label="Default select example" defaultValue={'DEFAULT'}>
-          <option value="DEFAULT" disabled>Select a cohort</option>
-          <option value="1">16</option>
-          <option value="2">17</option>
-          <option value="3">18</option>
-        </select> */}
         <InputLabel id="demo-simple-select-label">Cohort</InputLabel>
         <Select className="select-w"
             labelId="demo-simple-select-label"
