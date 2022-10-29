@@ -33,3 +33,7 @@
     width: 70%;
 }
 
+.container-data-grid .MuiDataGrid-root > div:last-child {
+    display: none;
+}
+
