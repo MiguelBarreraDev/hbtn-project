@@ -2,7 +2,7 @@ body, html {
   background-color: #EBECF0;
 }
 
-body, button {
+body {
   font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: 16px;
@@ -14,7 +14,7 @@ div.tittle {
   margin-top: -11px;
 }
 
-form {
+form.f-login {
   padding: 16px;
   width: 320px;
   margin: 0 auto;
@@ -24,13 +24,13 @@ form {
   padding: 32px 0;
   text-align: center;
 }
-div.logo {
+div.logo1 {
   width: 70px;
   margin: -35px 0 10px 120px;
   height: 60px;
 }
 
-div.logo img {
+div.logo1 img {
   width: 50px;
 }
 
@@ -84,6 +84,6 @@ form.f-login {
   cursor: pointer;
   font-weight: 600;
 }
-form:hover {
+form.f-login:hover {
   box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
 }
