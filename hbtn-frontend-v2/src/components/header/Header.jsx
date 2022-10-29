@@ -46,7 +46,7 @@ export default function Header() {
         <hr />
         <div className="logout flex">
           <button onClick={logout}>
-            <i className="fi fi-br-sign-out-alt"></i>
+           <i className="fi fi-br-sign-out-alt"></i>
           </button>
         </div>
       </nav>
