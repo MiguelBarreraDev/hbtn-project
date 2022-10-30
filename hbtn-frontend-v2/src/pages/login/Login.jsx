@@ -20,7 +20,7 @@ export function Login() {
 
   useLayoutEffect(() => {
     google.accounts.id.initialize({
-      client_id: "422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com",
+      client_id: "your_client_id",
       callback: handleCallbackResponse
     });
     google.accounts.id.renderButton(
@@ -41,7 +41,7 @@ export function Login() {
         </div>
         <div id="signInDiv"></div>
         {/* <GoogleLogin
-        clientId="422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com"
+        clientId=" "
         render={renderProps =>(
               <button className="red mybtn act" type="button" id="signInDiv" onClick={renderProps.onClick} disabled={renderProps.disabled}>Iniciar con google</button>
           )}
