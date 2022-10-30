@@ -10,14 +10,9 @@ import { GoogleLogin, useGoogleLogin } from 'react-google-login';
 
 export function Login() {
 
-    // const respuestaGoogle=(response)=>{
-    //     console.log(response);
-    //     console.log(response.profileObj);
-    // }
     const [user, setUser ] = useState({});
 
     function handleCallbackResponse(response) {
-        console.log("desde login")
         console.log("Encoded JWS Id tokens" + response.credential);
         var userObj = jwt_decode(response.credential);
         console.log(userObj);
@@ -25,7 +20,7 @@ export function Login() {
     }
     useEffect(() => {
         google.accounts.id.initialize({
-            client_id: "422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com",
+		// client_id: "your googleuserid",
             callback: handleCallbackResponse
         });
         // google.accounts.id.renderButton(
@@ -35,8 +30,6 @@ export function Login() {
         google.accounts.id.prompt();
     }, []);
 
-    // if we have user: sig button. or 
-    // if no user: show the log out button.
     return (
         <div className="App">
         <form class="f-login">
