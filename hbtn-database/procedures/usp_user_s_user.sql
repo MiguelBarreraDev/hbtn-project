@@ -18,7 +18,9 @@ BEGIN
 	SELECT 
 		`nombre`,
 		`apellido`,
-		`email`
+		`email`,
+		`id_rol`,
+		`estado`
         
 	FROM
 		`usuarios`

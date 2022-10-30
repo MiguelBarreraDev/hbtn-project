@@ -42,16 +42,16 @@ def login():
     data = request.get_json()
     token = data["data"]["token"]
     response = {}
-    print("Response: {}".format(token))
     # (Receive token by HTTPS POST)
     try:
         # Specify the CLIENT_ID of the app that accesses the backend:
         idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
         email = idinfo["email"]
         response = DBProcedures.users_login(email)
+        print("-> response", response)
 
         # Or, if multiple clients access the backend server
-        userid = idinfo['sub']
+        # userid = idinfo['sub']
     except ValueError:
         # Invalid token
         return make_response(401)
