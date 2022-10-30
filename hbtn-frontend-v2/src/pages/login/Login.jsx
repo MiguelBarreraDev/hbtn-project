@@ -5,9 +5,10 @@ import './login.css'
 import { useAuth } from "@/hooks";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin, useGoogleLogin } from 'react-google-login';
+
 export function Login() {
   const navigate = useNavigate()
-  const { login, isLogged, loading } = useAuth()
+  const { login, isLogged } = useAuth()
 
   useEffect(() => {
     isLogged && navigate('/')
@@ -20,7 +21,7 @@ export function Login() {
 
   useLayoutEffect(() => {
     google.accounts.id.initialize({
-      client_id: "your_client_id",
+      client_id: import.meta.env.VITE_CLIENT_ID,
       callback: handleCallbackResponse
     });
     google.accounts.id.renderButton(
