@@ -41,7 +41,7 @@ export function Users() {
 
     return (
         <div className="component-content">
-            <h1>Users</h1>
+            <h1>Users</h1> 
             <nav className="navbar navbar-expand-lg">
                 <div className="f-container">
                     <form className="d-flex" role="search">

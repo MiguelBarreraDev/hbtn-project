@@ -2,3 +2,55 @@
     margin: 20px auto;
     width: 70%;
 }
+
+.caption-report {
+    // display: flex;
+    position: relative;
+    button {
+        position: absolute;
+        right: 15px;
+    }
+}
+
+//style dialog modal
+.dialog-content {
+    width: 600px;
+    height: 250px;
+}
+.form-reports {
+    width: 100%;
+}
+.mybgk {
+    background-color: #EBECF0;
+}
+
+// slect reporte field
+#demo-simple-select{
+    padding-right: 90px !important;
+}
+.MuiContainer-root {
+    margin-top: 38px;
+}
+.MuiPopover-paper {
+    left: 420px !important;
+}
+// end select
+
+// style btn
+button.acp-cnl{
+    border-radius: 8px;
+    line-height: 0;
+    width: 160px;
+    height: 48px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+  }
+  button.acp-cnl:hover {
+    color: rgb(110, 177, 80);
+  }
+  button.acp-cnl:active {
+    color: rgb(4, 109, 44);
+  }
+

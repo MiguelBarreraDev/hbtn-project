@@ -18,7 +18,6 @@ export default function useAuth () {
 
     // Hanlde error
     if (response?.error) return response
-
     // Set auth token
     ls.setItem('token', token)
 
@@ -36,7 +35,7 @@ export default function useAuth () {
     dispatch(resetUser())
     redirect && navigate(publicsRoutes.LOGIN.path)
   }
-
+  // return functions
   return {
     login,
     logout,
