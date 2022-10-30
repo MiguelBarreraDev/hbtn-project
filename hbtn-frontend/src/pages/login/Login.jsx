@@ -34,25 +34,25 @@ export function Login() {
         <div className="App">
         <form class="f-login">
     
-          <div class="segment tittle">
+          <div className="segment tittle">
             <h1>Iniciar Sesion</h1>
           </div>
-          <div class="logo">
+          <div className="logo">
             <img src="https://holberton.anahuac.mx/wp-content/uploads/Group-359.png"></img>
           </div>
           <GoogleLogin
           clientId="422076817865-9dbp6oce8lv11muqibebec3lusskrb6t.apps.googleusercontent.com"
           render={renderProps =>(
-                <button class="red mybtn act" type="button" id="signInDiv" onClick={renderProps.onClick} disabled={renderProps.disabled}>Iniciar con google</button>
+                <button className="red mybtn act" type="button" id="signInDiv" onClick={renderProps.onClick} disabled={renderProps.disabled}>Iniciar con google</button>
             )}
             cookiePolicy={'single_host_origin'}
           />
           {/* <button class="red mybtn act" type="button" id="signInDiv"> Iniciar con google</button> */}
           
-          <div class="segment">
-            <button class="unit mybtn" type="button"></button>
-            <button class="unit mybtn" type="button"></button>
-            <button class="unit mybtn" type="button"></button>
+          <div className="segment">
+            <button className="unit mybtn" type="button"></button>
+            <button className="unit mybtn" type="button"></button>
+            <button className="unit mybtn" type="button"></button>
           </div>
           
         </form>
